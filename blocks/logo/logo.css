@@ -1,0 +1,19 @@
+.logo {
+  max-width: 142px ;
+  max-height: 33px;
+  margin: 0 auto;
+  opacity: 1;
+  transition: .5s;
+  cursor: pointer;
+}
+
+.logo:hover {
+  opacity: .6;
+}
+
+@media screen and (max-width: 880px) {
+  .logo {
+    max-width: calc(103.74px + (142 - 103.74) * ((100vw - 320px) / (880 – 320)));
+    max-height: calc(24.4px + (33 - 24.4) * ((100vw - 320px) / (880 – 320)));
+  }
+}

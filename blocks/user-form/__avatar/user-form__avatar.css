@@ -1,0 +1,15 @@
+.user-form__avatar {
+  width: 120px;
+  height: 120px;
+  background-image: url(../../../images/kusto-avatar.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  border-radius: 50%;
+}
+
+@media screen and (max-width: 500px) {
+  .user-form__avatar {
+    margin-top: 38px;
+  }
+}

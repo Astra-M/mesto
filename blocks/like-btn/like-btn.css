@@ -1,0 +1,17 @@
+.like-btn {
+  background-image: url("../../images/like-btn-white.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 22px;
+  height: 19px;
+  background-color: white;
+  border: none;
+  padding: 0;
+  opacity: 1;
+  transition: .5s;
+  cursor: pointer;
+}
+
+.like-btn:hover {
+  opacity: .5;
+}
