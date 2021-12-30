@@ -10,85 +10,69 @@
 
 <body class="page">
   <div class="page__container">
-    
-    <section class="popup">
-      <button class="popup__close"></button>
-      <form class="popup__container">
-        <div class="popup__text-container">
-          <h3 class="popup__title">Редактировать профиль</h3>
-          <div class="popup__input">
-            <input type="text" class="popup__name" placeholder="введите Ваше имя" value="Жак-Ив Кусто">
-            <input type="text" class="popup__job" placeholder="введите Вашу профессию" value="Исследователь океана">
-          </div>
-        </div>
-        <button type="submit" class="popup__save">Сохранить</button>
-      </form>
-    </section>
-
     <header class=" header">
       <a href="#" class="logo-link">
         <img src="./images/mesto_logo_white.svg" alt="лого Mesto" class="logo">
       </a>
     </header>
-  
+
     <main class="content">
       <section class="user-profile">
         <div class="user-form">
           <div class="user-form__avatar"></div>
           <div class="input">
             <div class="input__block">
-              <p class="input__name">Жак-Ив Кусто</p>
-              <button class="edit-btn"></button>
-            </div>   
+              <h1 class="input__name">Жак-Ив Кусто</h1>
+              <button type="button" class="edit-btn"></button>
+            </div>
             <p class="input__job">Исследователь океана</p>
           </div>
         </div>
-        <button class="add-btn"></button>
+        <button type="button" class="add-btn"></button>
       </section>
-      
-  
-      <section class="places-gallery content">
+
+      <section class="places-gallery">
         <ul class="places-gallery__list">
           <li class="place-card">
             <img src="./images/photo-gallery-karachaevsk.jpg" alt="фото пейзаж Карачаевск" class="place-card__photo">
             <div class="place-card__text">
               <h3 class="place-card__title">Карачаевск</h3>
-              <button class="like-btn"></button>
+              <button type="button" class="like-btn"></button>
             </div>
           </li>
           <li class="place-card">
             <img src="./images/photo-gallery-elbrus.jpg" alt="фото пейзаж Эльбрус" class="place-card__photo">
             <div class="place-card__text">
               <h3 class="place-card__title">Эльбрус</h3>
-              <button class="like-btn"></button>
+              <button type="button" class="like-btn"></button>
             </div>
           </li>
           <li class="place-card">
             <img src="./images/photo-gallery-dombay.jpg" alt="фото пейзаж Домбай" class="place-card__photo">
             <div class="place-card__text">
               <h3 class="place-card__title">Домбай</h3>
-              <button class="like-btn"></button>
+              <button type="button" class="like-btn"></button>
             </div>
           </li>
           <li class="place-card">
             <img src="./images/photo-gallery-elbrus.jpg" alt="фото пейзаж Эльбрус" class="place-card__photo">
             <div class="place-card__text">
               <h3 class="place-card__title">Эльбрус</h3>
-              <button class="like-btn"></button>
+              <button type="button" class="like-btn"></button>
             </div>
           </li>
           <li class="place-card">
             <img src="./images/photo-gallery-dombay.jpg" alt="фото пейзаж Домбай" class="place-card__photo">
             <div class="place-card__text">
               <h3 class="place-card__title">Домбай</h3>
-              <button class="like-btn"></button>
+              <button type="button" class="like-btn"></button>
             </div>
           </li>
           <li class="place-card">
             <img src="./images/photo-gallery-karachaevsk.jpg" alt="фото пейзаж Карачаевск" class="place-card__photo">
             <div class="place-card__text">
               <h3 class="place-card__title">Карачаево-Черкеcсия</h3>
-              <button class="like-btn"></button>
+              <button type="button" class="like-btn"></button>
             </div>
           </li>
         </ul>
@@ -98,6 +82,20 @@
     <footer class="footer">
       <p class="footer__copyright content">&copy;2020 Mesto Russia</p>
     </footer>
+
+    <article class="popup">
+      <button type="button" aria-label="закрыть окно" class="popup__close"></button>
+      <form name="popup_container" class="popup__container">
+        <div class="popup__text-container">
+          <h3 class="popup__title">Редактировать профиль</h3>
+          <div class="popup__inputs">
+            <input type="text" name="popup__name" class="popup__input popup__input_type_name" placeholder="введите Ваше имя">
+            <input type="text" name="popup__job" class="popup__input popup__input_type_job" placeholder="введите Вашу профессию">
+          </div>
+        </div>
+        <button type="submit" class="popup__save">Сохранить</button>
+      </form>
+    </article>
   </div>
 <script src="./scripts/index.js"></script>
 </body>
