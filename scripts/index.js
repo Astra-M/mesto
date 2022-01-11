@@ -1,6 +1,7 @@
 
 //Попапы
-const popup = document.querySelector('.popup_type_edit-profile');
+//const popup = document.querySelector('.popup_type_edit-profile');
+const editProfilePopup = document.querySelector('.popup_type_edit-profile');
 const addNewPlacePopup = document.querySelector('.popup_type_add-place');
 const placeImagePopup = document.querySelector('.popup_type_place-image');
 const placeImage = document.querySelector('.popup__image');
@@ -21,12 +22,12 @@ const placelinkInput = document.querySelector('.popup__input_type_place-link');
 
 //Кнопки
 const popupOpenButton = document.querySelector('.edit-btn');
-const popupCloseButton = popup.querySelector('.popup__close');
-//const popupCloseButton = document.querySelector('.popup__close');
-const popupSaveButton = formElement.querySelector('.popup__save');
 const addPlaceButton = document.querySelector('.add-btn');
+const popupCloseButton = editProfilePopup.querySelector('.popup__close');
+//const popupCloseButton = document.querySelector('.popup__close');
 const closeNewPlaceButton = addNewPlacePopup.querySelector('.popup__close');
 const placeImageCloseButton = placeImagePopup.querySelector('.popup__close');
+const popupSaveButton = formElement.querySelector('.popup__save');
 
 
 //Функции
@@ -34,11 +35,11 @@ const placeImageCloseButton = placeImagePopup.querySelector('.popup__close');
 function openPopup () {
   nameInput.value = userName.textContent;
   jobInput.value = userJob.textContent;
-  popup.classList.add('popup_opened');
+  editProfilePopup.classList.add('popup_opened');
 }
 
 function closePopup () {
-  popup.classList.remove('popup_opened');
+  editProfilePopup.classList.remove('popup_opened');
 }
 
 function formSubmitHandler (evt) {
