@@ -1,22 +1,24 @@
 
 //Попапы
-//const popup = document.querySelector('.popup_type_edit-profile');
 const editProfilePopup = document.querySelector('.popup_type_edit-profile');
 const addNewPlacePopup = document.querySelector('.popup_type_add-place');
 const placeImagePopup = document.querySelector('.popup_type_place-image');
+
+//Элементы
 const placeImage = document.querySelector('.popup__image');
 const placeCaption = document.querySelector('.popup__image-caption');
-
+const placesList = document.querySelector('.places-gallery__list');
+const cardTemplate = document.querySelector('.card-template').content;
 
 //Формы
-const formElement = document.querySelector('.popup__container');
-const addNewPlaceForm = addNewPlacePopup.querySelector('.popup__container')
+const editProfileForm = editProfilePopup.querySelector('.popup__container');
+const addNewPlaceForm = addNewPlacePopup.querySelector('.popup__container');
 
 //Инпуты
 const userName = document.querySelector('.input__name');
 const userJob = document.querySelector('.input__job');
-const nameInput = formElement.querySelector('.popup__input_type_name');
-const jobInput = formElement.querySelector('.popup__input_type_job');
+const nameInput = editProfileForm.querySelector('.popup__input_type_name');
+const jobInput = editProfileForm.querySelector('.popup__input_type_job')
 const placeNameInput = document.querySelector('.popup__input_type_place-name');
 const placelinkInput = document.querySelector('.popup__input_type_place-link');
 
@@ -24,11 +26,9 @@ const placelinkInput = document.querySelector('.popup__input_type_place-link');
 const popupOpenButton = document.querySelector('.edit-btn');
 const addPlaceButton = document.querySelector('.add-btn');
 const popupCloseButton = editProfilePopup.querySelector('.popup__close');
-//const popupCloseButton = document.querySelector('.popup__close');
 const closeNewPlaceButton = addNewPlacePopup.querySelector('.popup__close');
 const placeImageCloseButton = placeImagePopup.querySelector('.popup__close');
-const popupSaveButton = formElement.querySelector('.popup__save');
-
+const popupSaveButton = editProfileForm.querySelector('.popup__save');
 
 //Функции
 
@@ -58,7 +58,7 @@ popupOpenButton.addEventListener('click', openPopup);
 popupCloseButton.addEventListener('click', closePopup);
 addPlaceButton.addEventListener('click', () => togglePopup(addNewPlacePopup));
 closeNewPlaceButton.addEventListener('click', () => togglePopup(addNewPlacePopup))
-formElement.addEventListener('submit', formSubmitHandler);
+editProfileForm.addEventListener('submit', formSubmitHandler);
 popupSaveButton.addEventListener('click', closePopup);
 
 addNewPlaceForm.addEventListener('submit', (event) => {
@@ -96,9 +96,6 @@ const initialCards = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
 ];
-
-const placesList = document.querySelector('.places-gallery__list');
-const cardTemplate = document.querySelector('.card-template').content;
 
 function createCard(cardData) {
   const cardElement = cardTemplate.cloneNode(true);
