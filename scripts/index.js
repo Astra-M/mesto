@@ -8,7 +8,6 @@ const placeImagePopup = document.querySelector('.popup_type_place-image');
 const placeImage = document.querySelector('.popup__image');
 const placeCaption = document.querySelector('.popup__image-caption');
 const placesList = document.querySelector('.places-gallery__list');
-const cardTemplate = document.querySelector('.card-template').content;
 
 //Формы
 const editProfileForm = editProfilePopup.querySelector('.popup__container');
@@ -23,52 +22,50 @@ const placeNameInput = document.querySelector('.popup__input_type_place-name');
 const placelinkInput = document.querySelector('.popup__input_type_place-link');
 
 //Кнопки
-const popupOpenButton = document.querySelector('.edit-btn');
+const editProfileButton = document.querySelector('.edit-btn');
+const editProfileCloseButton = editProfilePopup.querySelector('.popup__close');
 const addPlaceButton = document.querySelector('.add-btn');
-const popupCloseButton = editProfilePopup.querySelector('.popup__close');
 const closeNewPlaceButton = addNewPlacePopup.querySelector('.popup__close');
 const placeImageCloseButton = placeImagePopup.querySelector('.popup__close');
-const popupSaveButton = editProfileForm.querySelector('.popup__save');
 
 //Функции
-
-function openPopup () {
-  nameInput.value = userName.textContent;
-  jobInput.value = userJob.textContent;
-  editProfilePopup.classList.add('popup_opened');
-}
-
-function closePopup () {
-  editProfilePopup.classList.remove('popup_opened');
-}
-
-function formSubmitHandler (evt) {
-  evt.preventDefault();
-  userName.textContent = nameInput.value;
-  userJob.textContent = jobInput.value;
-}
 
 function togglePopup(modal) {
   modal.classList.toggle('popup_opened');
 }
 
-//Обработчики событий
+function openProfile() {
+  nameInput.value = userName.textContent;
+  jobInput.value = userJob.textContent;
+  togglePopup(editProfilePopup);
+}
 
-popupOpenButton.addEventListener('click', openPopup);
-popupCloseButton.addEventListener('click', closePopup);
-addPlaceButton.addEventListener('click', () => togglePopup(addNewPlacePopup));
-closeNewPlaceButton.addEventListener('click', () => togglePopup(addNewPlacePopup))
-editProfileForm.addEventListener('submit', formSubmitHandler);
-popupSaveButton.addEventListener('click', closePopup);
-
-addNewPlaceForm.addEventListener('submit', (event) => {
+function editProfile (event) {
   event.preventDefault();
-  createCard({
+  userName.textContent = nameInput.value;
+  userJob.textContent = jobInput.value;
+  togglePopup(editProfilePopup);
+}
+
+function addPlace (event) {
+  event.preventDefault();
+    createCard({
     name: placeNameInput.value,
     link: placelinkInput.value,
   })
   togglePopup(addNewPlacePopup);
-})
+  addNewPlaceForm.reset();
+}
+
+//Обработчики событий
+
+editProfileButton.addEventListener('click', openProfile);
+editProfileCloseButton.addEventListener('click', () => togglePopup(editProfilePopup));
+addPlaceButton.addEventListener('click', () => togglePopup(addNewPlacePopup));
+closeNewPlaceButton.addEventListener('click', () => togglePopup(addNewPlacePopup));
+placeImageCloseButton.addEventListener('click', () => togglePopup(placeImagePopup));
+editProfileForm.addEventListener('submit', editProfile);
+addNewPlaceForm.addEventListener('submit', addPlace);
 
 const initialCards = [
   {
@@ -98,6 +95,7 @@ const initialCards = [
 ];
 
 function createCard(cardData) {
+  const cardTemplate = document.querySelector('.card-template').content;
   const cardElement = cardTemplate.cloneNode(true);
   const placeCard = cardElement.querySelector('.place-card');
   const cardImage = cardElement.querySelector('.place-card__photo');
@@ -123,14 +121,9 @@ function createCard(cardData) {
     placeImage.src = cardData.link;
   }
 
-  function closeHandler() {
-    placeImagePopup.classList.remove('popup_opened');
-  }
-
   deleteButton.addEventListener('click', deleteHandler);
   likeButton.addEventListener('click', likeHandler);
   cardImage.addEventListener('click', imageClickHandler);
-  placeImageCloseButton.addEventListener('click', closeHandler);
 
   placesList.prepend(cardElement);
 }
