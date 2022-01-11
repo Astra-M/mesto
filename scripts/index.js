@@ -21,7 +21,8 @@ const placelinkInput = document.querySelector('.popup__input_type_place-link');
 
 //Кнопки
 const popupOpenButton = document.querySelector('.edit-btn');
-const popupCloseButton = document.querySelector('.popup__close');
+const popupCloseButton = popup.querySelector('.popup__close');
+//const popupCloseButton = document.querySelector('.popup__close');
 const popupSaveButton = formElement.querySelector('.popup__save');
 const addPlaceButton = document.querySelector('.add-btn');
 const closeNewPlaceButton = addNewPlacePopup.querySelector('.popup__close');
