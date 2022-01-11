@@ -8,9 +8,8 @@
   font-weight: 400;
   text-align: center;
   border-radius: 2px;
-  border: none;
-  max-width: 358px;
-  margin: 0;
+  border: none;  
+  margin: 0 36px 36px 36px;
   padding: 0;
   transition: .5s;
   cursor: pointer;
@@ -20,12 +19,12 @@
   opacity: .8;
 }
 
-
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 530px) {
   .popup__save {
     width: 238px;
     height: 46px;
     font-size: 14px;
     line-height: 17px;
+    margin: 0 22px 22px 22px;
   }
 }

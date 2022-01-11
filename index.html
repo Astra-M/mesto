@@ -33,48 +33,6 @@
 
       <section class="places-gallery">
         <ul class="places-gallery__list">
-          <li class="place-card">
-            <img src="./images/photo-gallery-karachaevsk.jpg" alt="фото пейзаж Карачаевск" class="place-card__photo">
-            <div class="place-card__text">
-              <h3 class="place-card__title">Карачаевск</h3>
-              <button type="button" class="like-btn"></button>
-            </div>
-          </li>
-          <li class="place-card">
-            <img src="./images/photo-gallery-elbrus.jpg" alt="фото пейзаж Эльбрус" class="place-card__photo">
-            <div class="place-card__text">
-              <h3 class="place-card__title">Эльбрус</h3>
-              <button type="button" class="like-btn"></button>
-            </div>
-          </li>
-          <li class="place-card">
-            <img src="./images/photo-gallery-dombay.jpg" alt="фото пейзаж Домбай" class="place-card__photo">
-            <div class="place-card__text">
-              <h3 class="place-card__title">Домбай</h3>
-              <button type="button" class="like-btn"></button>
-            </div>
-          </li>
-          <li class="place-card">
-            <img src="./images/photo-gallery-elbrus.jpg" alt="фото пейзаж Эльбрус" class="place-card__photo">
-            <div class="place-card__text">
-              <h3 class="place-card__title">Эльбрус</h3>
-              <button type="button" class="like-btn"></button>
-            </div>
-          </li>
-          <li class="place-card">
-            <img src="./images/photo-gallery-dombay.jpg" alt="фото пейзаж Домбай" class="place-card__photo">
-            <div class="place-card__text">
-              <h3 class="place-card__title">Домбай</h3>
-              <button type="button" class="like-btn"></button>
-            </div>
-          </li>
-          <li class="place-card">
-            <img src="./images/photo-gallery-karachaevsk.jpg" alt="фото пейзаж Карачаевск" class="place-card__photo">
-            <div class="place-card__text">
-              <h3 class="place-card__title">Карачаево-Черкеcсия</h3>
-              <button type="button" class="like-btn"></button>
-            </div>
-          </li>
         </ul>
       </section>
     </main>
@@ -83,7 +41,7 @@
       <p class="footer__copyright content">&copy;2020 Mesto Russia</p>
     </footer>
 
-    <article class="popup">
+    <article class="popup popup_type_edit-profile">
       <button type="button" aria-label="закрыть окно" class="popup__close"></button>
       <form name="popup_container" class="popup__container">
         <div class="popup__text-container">
@@ -96,7 +54,42 @@
         <button type="submit" class="popup__save">Сохранить</button>
       </form>
     </article>
+
+    <article class="popup popup_type_add-place">
+      
+      <form name="popup_container" class="popup__container">
+        <button type="button" aria-label="закрыть окно" class="popup__close"></button>
+        <div class="popup__text-container">
+          <h3 class="popup__title">Новое место</h3>
+          <div class="popup__inputs">
+            <input type="text" name="popup__place" class="popup__input popup__input_type_place-name" placeholder="Название">
+            <input type="text" name="popup__link" class="popup__input popup__input_type_place-link" placeholder="Ссылка на картинку">
+          </div>
+        </div>
+        <button type="submit" class="popup__save">Создать</button>
+      </form>
+    </article>
+
+    <div class="popup popup_type_place-image">
+      <figure class="popup__content">
+        <button type="button" aria-label="закрыть окно" class="popup__close popup__close_type_place"></button>
+        <img class="popup__image" src="" alt="фото пейзаж">
+        <figcaption class="popup__image-caption">Вставить текст</figcaption>
+      </figure>
+    </div>
+
+
   </div>
+  <template class="card-template">
+    <li class="place-card">
+      <img src="" alt="фото пейзаж" class="place-card__photo">
+      <div class="place-card__text">
+        <h3 class="place-card__title"></h3>
+        <button type="button" class="like-btn"></button>
+      </div>
+      <button type="button" class="delete-btn"></button>
+    </li>
+  </template>
 <script src="./scripts/index.js"></script>
 </body>
 </html>
