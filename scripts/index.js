@@ -106,6 +106,7 @@ function createCard(cardData) {
   
   cardTitle.textContent = cardData.name;
   cardImage.src = cardData.link;
+  cardImage.alt = cardData.name;
 
   function deleteHandler() {
     placeCard.remove();
@@ -119,6 +120,7 @@ function createCard(cardData) {
     togglePopup(placeImagePopup);
     placeCaption.textContent = cardData.name;
     placeImage.src = cardData.link;
+    placeImage.alt = cardData.name;
   }
 
   deleteButton.addEventListener('click', deleteHandler);
