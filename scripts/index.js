@@ -94,7 +94,7 @@ const initialCards = [
   }
 ];
 
-function createCard(cardData) {
+function getCard(item) {
   const cardTemplate = document.querySelector('.card-template').content;
   const cardElement = cardTemplate.cloneNode(true);
   const placeCard = cardElement.querySelector('.place-card');
@@ -103,31 +103,35 @@ function createCard(cardData) {
   const deleteButton = cardElement.querySelector('.delete-btn');
   const likeButton = cardElement.querySelector('.like-btn');
 
-  
-  cardTitle.textContent = cardData.name;
-  cardImage.src = cardData.link;
-  cardImage.alt = cardData.name;
+  cardTitle.textContent = item.name;
+  cardImage.src = item.link;
+  cardImage.alt = item.name;
 
   function deleteHandler() {
     placeCard.remove();
   }
-  
+
   function likeHandler() {
     likeButton.classList.toggle('like-btn_active');
   }
-  
+
   function imageClickHandler() {
     togglePopup(placeImagePopup);
-    placeCaption.textContent = cardData.name;
-    placeImage.src = cardData.link;
-    placeImage.alt = cardData.name;
+    placeCaption.textContent = item.name;
+    placeImage.src = item.link;
+    placeImage.alt = item.name;
   }
 
   deleteButton.addEventListener('click', deleteHandler);
   likeButton.addEventListener('click', likeHandler);
   cardImage.addEventListener('click', imageClickHandler);
 
-  placesList.prepend(cardElement);
+  return cardElement;
+}
+
+function createCard(cardData) {
+  const placeCard = getCard(cardData);
+  placesList.prepend(placeCard);
 }
 
 initialCards.forEach(createCard);
