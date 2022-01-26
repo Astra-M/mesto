@@ -30,21 +30,27 @@ const placeImageCloseButton = placeImagePopup.querySelector('.popup__close');
 
 //Функции
 
-function togglePopup(modal) {
-  modal.classList.toggle('popup_opened');
+function openPopup(modal) {
+  modal.classList.add('popup_opened');
+  document.addEventListener('keydown', (event) => closePopupByEscapeButton(event, modal));
+}
+
+function closePopup(modal) {
+  modal.classList.remove('popup_opened');
+  document.removeEventListener('keydown', (event) => closePopupByEscapeButton(event, modal));
 }
 
 function openProfile() {
   nameInput.value = userName.textContent;
   jobInput.value = userJob.textContent;
-  togglePopup(editProfilePopup);
+  openPopup(editProfilePopup);
 }
 
 function editProfile (event) {
   event.preventDefault();
   userName.textContent = nameInput.value;
   userJob.textContent = jobInput.value;
-  togglePopup(editProfilePopup);
+  closePopup(editProfilePopup);
 }
 
 function addPlace (event) {
@@ -52,18 +58,18 @@ function addPlace (event) {
     createCard({
     name: placeNameInput.value,
     link: placelinkInput.value,
-  })
-  togglePopup(addNewPlacePopup);
+  })  
+  closePopup(addNewPlacePopup);
   addNewPlaceForm.reset();
 }
 
 //Обработчики событий
 
 editProfileButton.addEventListener('click', openProfile);
-editProfileCloseButton.addEventListener('click', () => togglePopup(editProfilePopup));
-addPlaceButton.addEventListener('click', () => togglePopup(addNewPlacePopup));
-closeNewPlaceButton.addEventListener('click', () => togglePopup(addNewPlacePopup));
-placeImageCloseButton.addEventListener('click', () => togglePopup(placeImagePopup));
+editProfileCloseButton.addEventListener('click', () => closePopup(editProfilePopup));
+addPlaceButton.addEventListener('click', () => openPopup(addNewPlacePopup));
+closeNewPlaceButton.addEventListener('click', () => closePopup(addNewPlacePopup));
+placeImageCloseButton.addEventListener('click', () => closePopup(placeImagePopup));
 editProfileForm.addEventListener('submit', editProfile);
 addNewPlaceForm.addEventListener('submit', addPlace);
 
@@ -116,7 +122,7 @@ function getCard(item) {
   }
 
   function imageClickHandler() {
-    togglePopup(placeImagePopup);
+    openPopup(placeImagePopup);
     placeCaption.textContent = item.name;
     placeImage.src = item.link;
     placeImage.alt = item.name;
@@ -135,3 +141,24 @@ function createCard(cardData) {
 }
 
 initialCards.forEach(createCard);
+
+function closePopupOnOverlayClick(event,popup) {
+  if (event.target === event.currentTarget) {
+    closePopup(popup);
+  }
+};
+
+function setEventListenersOnPopups() {
+  popupList = Array.from(document.querySelectorAll('.popup'));
+  popupList.forEach( popup => {
+    popup.addEventListener('click', (event) => closePopupOnOverlayClick(event,popup));
+    })
+};
+
+setEventListenersOnPopups();
+
+function closePopupByEscapeButton (event, popup) {
+  if (event.key === 'Escape') {
+    closePopup(popup);
+  }
+};
