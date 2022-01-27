@@ -3,6 +3,7 @@
 const editProfilePopup = document.querySelector('.popup_type_edit-profile');
 const addNewPlacePopup = document.querySelector('.popup_type_add-place');
 const placeImagePopup = document.querySelector('.popup_type_place-image');
+const popups = document.querySelectorAll('.popup');
 
 //Элементы
 const placeImage = document.querySelector('.popup__image');
@@ -23,21 +24,40 @@ const placelinkInput = document.querySelector('.popup__input_type_place-link');
 
 //Кнопки
 const editProfileButton = document.querySelector('.edit-btn');
-const editProfileCloseButton = editProfilePopup.querySelector('.popup__close');
 const addPlaceButton = document.querySelector('.add-btn');
-const closeNewPlaceButton = addNewPlacePopup.querySelector('.popup__close');
-const placeImageCloseButton = placeImagePopup.querySelector('.popup__close');
 
 //Функции
 
+function closePopupOnClick() {
+  popups.forEach( (popup) => {
+    popup.addEventListener('mousedown', (event) => {
+        if (event.target.classList.contains('popup_opened')) {
+          closePopup(popup)
+        }
+        if (event.target.classList.contains('popup__close')) {
+          closePopup(popup)
+        }
+    })
+  })
+}
+
+closePopupOnClick();
+
+function closePopupByEscapeButton(event) {
+  if (event.key === 'Escape') {
+    const openedPopup = document.querySelector('.popup_opened');
+    closePopup(openedPopup);
+  }
+}
+
 function openPopup(modal) {
   modal.classList.add('popup_opened');
-  document.addEventListener('keydown', (event) => closePopupByEscapeButton(event, modal));
+  document.addEventListener('keydown', closePopupByEscapeButton);
 }
 
 function closePopup(modal) {
   modal.classList.remove('popup_opened');
-  document.removeEventListener('keydown', (event) => closePopupByEscapeButton(event, modal));
+  document.removeEventListener('keydown', closePopupByEscapeButton);
 }
 
 function openProfile() {
@@ -66,10 +86,7 @@ function addPlace (event) {
 //Обработчики событий
 
 editProfileButton.addEventListener('click', openProfile);
-editProfileCloseButton.addEventListener('click', () => closePopup(editProfilePopup));
 addPlaceButton.addEventListener('click', () => openPopup(addNewPlacePopup));
-closeNewPlaceButton.addEventListener('click', () => closePopup(addNewPlacePopup));
-placeImageCloseButton.addEventListener('click', () => closePopup(placeImagePopup));
 editProfileForm.addEventListener('submit', editProfile);
 addNewPlaceForm.addEventListener('submit', addPlace);
 
@@ -141,24 +158,3 @@ function createCard(cardData) {
 }
 
 initialCards.forEach(createCard);
-
-function closePopupOnOverlayClick(event,popup) {
-  if (event.target === event.currentTarget) {
-    closePopup(popup);
-  }
-};
-
-function setEventListenersOnPopups() {
-  popupList = Array.from(document.querySelectorAll('.popup'));
-  popupList.forEach( popup => {
-    popup.addEventListener('click', (event) => closePopupOnOverlayClick(event,popup));
-    })
-};
-
-setEventListenersOnPopups();
-
-function closePopupByEscapeButton (event, popup) {
-  if (event.key === 'Escape') {
-    closePopup(popup);
-  }
-};
