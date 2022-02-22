@@ -1,8 +1,8 @@
 export class FormValidator {
   constructor(settings, form) {
     this._form = form;
-    this._inputs = form.querySelectorAll(settings.inputSelector);
-    this._button = form.querySelector(settings.submitButtonSelector);
+    this._inputs = this._form.querySelectorAll(settings.inputSelector);
+    this._button = this._form.querySelector(settings.submitButtonSelector);
     this._inactiveButtonClass = settings.inactiveButtonClass;
     this._errorVisibleClass = settings.errorVisibleClass;
     this._inputErrorClass = settings.inputErrorClass;
@@ -41,7 +41,7 @@ export class FormValidator {
   }
 
   _toggleButton = () => {
-    const isFormValid = this._form.querySelector('.popup__container').checkValidity();
+    const isFormValid = this._form.checkValidity();
     if (isFormValid) {
       this._enableSubmitButton();
     } else {

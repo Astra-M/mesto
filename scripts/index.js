@@ -8,18 +8,20 @@ const popups = document.querySelectorAll('.popup');
 const editProfilePopup = document.querySelector('.popup_type_edit-profile');
 const addNewPlacePopup = document.querySelector('.popup_type_add-place');
 
+//Формы
+const editProfileForm = editProfilePopup.querySelector('.popup__container');
+const addNewPlaceForm = addNewPlacePopup.querySelector('.popup__container');
+
 //Экземпляры классов
-const profileValidator = new FormValidator(config, editProfilePopup);
-const placeValidator = new FormValidator(config, addNewPlacePopup);
+const profileValidator = new FormValidator(config, editProfileForm);
+const placeValidator = new FormValidator(config, addNewPlaceForm);
 
 //Элементы
 const placeImage = document.querySelector('.popup__image');
 const placeCaption = document.querySelector('.popup__image-caption');
 const placesList = document.querySelector('.places-gallery__list');
 
-//Формы
-const editProfileForm = editProfilePopup.querySelector('.popup__container');
-const addNewPlaceForm = addNewPlacePopup.querySelector('.popup__container');
+
 
 //Инпуты
 const userName = document.querySelector('.input__name');
