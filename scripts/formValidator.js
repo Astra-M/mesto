@@ -1,4 +1,4 @@
-export class formValidator {
+export class FormValidator {
   constructor(settings, form) {
     this._form = form;
     this._inputs = form.querySelectorAll(settings.inputSelector);
@@ -50,8 +50,7 @@ export class formValidator {
   }
 
   _setEventListeners () {
-      this._form.addEventListener('submit', this._form);
-      this._form.addEventListener('reset', () => this._disableSubmitButton (this._button, this._inactiveButtonClass));
+      this._form.addEventListener('reset', () => this._disableSubmitButton());
 
       this._inputs.forEach( input => {
         input.addEventListener('input', () => {
@@ -59,7 +58,7 @@ export class formValidator {
         });
       });
 
-      this._toggleButton(this._form);
+      this._toggleButton();
   }
 
   enableValidation() {

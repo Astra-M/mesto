@@ -1,11 +1,10 @@
-import { openPopup, placeImagePopup, placeCaption, placeImage } from './index.js'
-
 export class Card {
-  constructor (data, cardSelector) {
+  constructor (data, cardSelector, handleCardClick) {
     this.src = data.link;
     this.title = data.name;
     this.alt = data.name;
     this._cardSelector = cardSelector;
+    this._handleCardClick = handleCardClick;
   }
 
   _getTemplate () {
@@ -18,18 +17,18 @@ export class Card {
 
   _fillCard () {
     this._cardElement.querySelector('.place-card__title').textContent = this.title;
-    this._cardElement.querySelector('.place-card__photo').src = this.src;
-    this._cardElement.querySelector('.place-card__photo').alt = this.title;
+    this._cardImage.src = this.src;
+    this._cardImage.alt = this.title;
   }
 
   generateCard () {
     this._cardElement = this._getTemplate();
     
-    this._fillCard();
-
     this._likeButton = this._cardElement.querySelector('.like-btn');
     this._deleteButton = this._cardElement.querySelector('.delete-btn');
     this._cardImage = this._cardElement.querySelector('.place-card__photo');
+
+    this._fillCard();
 
     this._setEventListeners();
 
@@ -43,14 +42,7 @@ export class Card {
   _deleteHandler() {
     this._cardElement.remove();
   }
-
-  _imageClickHandler() {
-    openPopup(placeImagePopup);
-    placeCaption.textContent = this.title;
-    placeImage.src = this.src;
-    placeImage.alt = this.title;
-  }
-
+  
   _setEventListeners () {
     this._deleteButton.addEventListener('click', () => {
       this._deleteHandler()
@@ -61,7 +53,7 @@ export class Card {
     });
 
     this._cardImage.addEventListener('click', () => {
-      this._imageClickHandler()
+      this._handleCardClick(this.title, this.src)
     })
   }
 }

@@ -1,45 +1,6 @@
-
-import { Card } from './card.js'
-import { formValidator } from './formValidator.js'
-export { openPopup, placeImagePopup, placeCaption, placeImage }
-
-//Конфиги
-const config = {
-  formSelector: '.popup__container',
-  inputSelector: '.popup__input',
-  errorSelector: '.popup__error',
-  inputErrorClass: 'popup__input_type_error',
-  errorVisibleClass: 'popup__error_visible',
-  inactiveButtonClass: 'popup__save_disabled',
-  submitButtonSelector: '.popup__save',
-}
-
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
+import { Card } from './Card.js';
+import { FormValidator } from './FormValidator.js';
+import { initialCards, config } from './constants.js'
 
 //Попапы
 const placeImagePopup = document.querySelector('.popup_type_place-image');
@@ -48,8 +9,8 @@ const editProfilePopup = document.querySelector('.popup_type_edit-profile');
 const addNewPlacePopup = document.querySelector('.popup_type_add-place');
 
 //Экземпляры классов
-const profileValidator = new formValidator(config, editProfilePopup);
-const placeValidator = new formValidator(config, addNewPlacePopup);
+const profileValidator = new FormValidator(config, editProfilePopup);
+const placeValidator = new FormValidator(config, addNewPlacePopup);
 
 //Элементы
 const placeImage = document.querySelector('.popup__image');
@@ -79,6 +40,13 @@ editProfileForm.addEventListener('submit', editProfile);
 addNewPlaceForm.addEventListener('submit', addPlace);
 
 //Функции
+
+function handleCardClick (name, link) {
+    placeCaption.textContent = name;
+    placeImage.src = link;
+    placeImage.alt = name;
+    openPopup(placeImagePopup);
+}
 
 function closePopupOnClick() {
   popups.forEach( (popup) => {
@@ -135,9 +103,14 @@ function addPlace (event) {
   addNewPlaceForm.reset();
 }
 
-function createCard(cardData) {
+function getCard(cardData) {
   const card = new Card(cardData,'.card-template');
   const cardElement = card.generateCard();
+  return cardElement
+}
+
+function createCard(cardData) {
+  const cardElement = getCard(cardData);
   placesList.prepend(cardElement);
 }
 
