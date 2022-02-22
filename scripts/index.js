@@ -104,7 +104,7 @@ function addPlace (event) {
 }
 
 function getCard(cardData) {
-  const card = new Card(cardData,'.card-template');
+  const card = new Card(cardData,'.card-template', handleCardClick);
   const cardElement = card.generateCard();
   return cardElement
 }
