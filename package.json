@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/Astra-M/mesto#readme",
   "devDependencies": {
+    "@babel/core": "^7.17.5",
     "@babel/preset-env": "^7.16.11",
     "autoprefixer": "^10.4.2",
     "babel-loader": "^8.2.3",
@@ -30,5 +31,8 @@
     "webpack": "^5.70.0",
     "webpack-cli": "^4.9.2",
     "webpack-dev-server": "^4.7.4"
+  },
+  "dependencies": {
+    "core-js": "^3.21.1"
   }
 }
