@@ -24,61 +24,62 @@ const profileValidator = new FormValidator(config, editProfileForm);
 const placeValidator = new FormValidator(config, addNewPlaceForm);
 
 const popupWithImage = new PopupWithImage('.popup_type_place-image');
+popupWithImage.setEventListeners();
 
 function handleCardClick (name,link) {
   popupWithImage.open(name,link);
-  popupWithImage._setEventListeners();
 }
 
 const userInfo = new UserInfo({
   userNameSelector: '.input__name',
-  userJobSelector: '.input__job'})
+  userJobSelector: '.input__job'
+})
 
-  const profileForm = new PopupWithForm ({
-    popupSelector: '.popup_type_edit-profile',
-    formSubmit: (data) => {
-      userInfo.setUserInfo({name: data.popup__name, job: data.popup__job})
-    }
-  })
-
-  profileForm.setEventListeners();
+const profileForm = new PopupWithForm ({
+  popupSelector: '.popup_type_edit-profile',
+  formSubmit: (data) => {
+    userInfo.setUserInfo({name: data.popup__name, job: data.popup__job})
+  }
+})
+profileForm.setEventListeners();
 
 const editProfileButton = document.querySelector('.edit-btn');
-
 editProfileButton.addEventListener('click', () => {
   const userData = userInfo.getUserInfo()
   nameInput.value = userData.userName
   jobInput.value = userData.userJob
-  
-  profileForm.open();
-  })
 
-  const placeForm = new PopupWithForm ({
-    popupSelector: '.popup_type_add-place',
-    formSubmit: (data) => {
-      const card = new Card({name: data.popup__place, link: data.popup__link},'.card-template', handleCardClick);
-      const cardElement = card.generateCard();
-      cardList.addItem (cardElement)
-    }
-  });
-  placeForm.setEventListeners();
+  profileForm.open();
+})
+
+function createCard (data) {
+  const card = new Card(data,'.card-template', handleCardClick);
+  return card.generateCard();
+}
+
+const placeForm = new PopupWithForm ({
+  popupSelector: '.popup_type_add-place',
+  formSubmit: (data) => {
+    const cardElement = createCard ({name: data.popup__place, link: data.popup__link});
+    cardList.addItem (cardElement);
+  }
+});
+placeForm.setEventListeners();
 
 const addPlaceButton = document.querySelector('.add-btn');
-
 addPlaceButton.addEventListener('click', () => {
   placeForm.open(); 
-  })
+})
 
-  const cardList = new Section ( {
-    items: initialCards,
-    renderer: (item) => {
-        const card = new Card(item,'.card-template', handleCardClick);
-        const cardElement = card.generateCard();
-        cardList.addItem(cardElement) 
-      } 
-  },'.places-gallery__list');
+const cardList = new Section ({
+  items: initialCards,
+  renderer: (item) => {
+    const cardElement = createCard (item);
+    cardList.addItem(cardElement);
+  }
+},'.places-gallery__list');
 
-  cardList.renderItems();
+cardList.renderItems();
 
-  placeValidator.enableValidation();
-  profileValidator.enableValidation();
+placeValidator.enableValidation();
+profileValidator.enableValidation();
