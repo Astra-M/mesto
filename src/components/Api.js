@@ -14,7 +14,6 @@ export class Api {
       }
         return Promise.reject(`Ошибка: ${res.status}`);
       })
-    .catch(err => console.log(err))
   }
 
   getCards() {
@@ -27,7 +26,6 @@ export class Api {
       }
         return Promise.reject(`Ошибка: ${res.status}`);
       })
-    .catch(err => console.log(err))
   }
 
   editProfile(name, about) {
@@ -45,7 +43,6 @@ export class Api {
       }
         return Promise.reject(`Ошибка: ${res.status}`);
       })
-    .catch(err => console.log(err))
   }
 
   editAvatar(avatar) {
@@ -62,7 +59,6 @@ export class Api {
       }
         return Promise.reject(`Ошибка: ${res.status}`);
       })
-    .catch(err => console.log(err))
   }
 
   addCard(name,link) {
@@ -80,7 +76,6 @@ export class Api {
       }
         return Promise.reject(`Ошибка: ${res.status}`);
       })
-    .catch(err => console.log(err))
   }
 
   deleteCard(id) {
@@ -94,7 +89,6 @@ export class Api {
       }
         return Promise.reject(`Ошибка: ${res.status}`);
       })
-    .catch(err => console.log(err))
   }
 
   addLike(id) {
@@ -108,7 +102,6 @@ export class Api {
       }
         return Promise.reject(`Ошибка: ${res.status}`);
       })
-    .catch(err => console.log(err))
   }
 
   deleteLike(id) {
@@ -122,6 +115,5 @@ export class Api {
       }
         return Promise.reject(`Ошибка: ${res.status}`);
       })
-    .catch(err => console.log(err))
   }
 }
